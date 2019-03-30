@@ -8,18 +8,18 @@ import menu.utils.SeleniumUtils.InterestingAttributes;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SelectElement implements MenufiedAction {
+public class SetText implements MenufiedAction {
 
     public static final String WEB_ELEMENT_NAME = "webElementName";
     public static final String WEB_ELEMENT = "webElement";
+    public static final String TEXT_VALUE_KEY = "textValue";
 
     @Override
     public String title() {
-        return "Save selected web element.";
+        return "Set text in web element.";
     }
 
     @Override
@@ -39,6 +39,7 @@ public class SelectElement implements MenufiedAction {
         final String nameChosen = parameters.remove(WEB_ELEMENT_NAME).toString();
         parameters.put(WEB_ELEMENT, mapDetailsElement);
         context.put(nameChosen, mapDetailsElement);
+        currentElement.sendKeys(parameters.get(TEXT_VALUE_KEY).toString());
         ContextUtils.getStepList(context).add(new Step(this.getClass().getName(), parameters));
 
     }
@@ -47,11 +48,14 @@ public class SelectElement implements MenufiedAction {
     public void action(Map<String, Object> context, Map<String, Object> parameters) {
         final WebDriver driver = SeleniumUtils.getDriver(context);
         WebElement element = SeleniumUtils.getElement(driver, parameters);
-        element.click();
+        element.sendKeys(parameters.get(TEXT_VALUE_KEY).toString());
     }
 
     @Override
     public Map<String, Object> expectedParameters() {
-        return Collections.singletonMap(WEB_ELEMENT_NAME, "string");
+        final Map<String, Object> parameters = new HashMap<>();
+        parameters.put(WEB_ELEMENT_NAME, "string");
+        parameters.put(TEXT_VALUE_KEY, "string");
+        return parameters;
     }
 }

@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class SeleniumUtils {
 
+    public static final String WEB_ELELEMT_TAG = "tag";
+
     public static WebDriver getWebDriver() {
         return new FirefoxDriver();
     }
@@ -49,7 +51,7 @@ public class SeleniumUtils {
         final WebElement webElement;
         final Map<String, Object> details = (Map<String, Object>) parameters.get(SelectElement.WEB_ELEMENT);
 
-        String startingCssSelector = (String) details.get("tag");
+        String startingCssSelector = (String) details.get(WEB_ELELEMT_TAG);
         StringBuilder builder = new StringBuilder(startingCssSelector);
         for (InterestingAttributes interestingAttribute : InterestingAttributes.values()) {
             final String attributeName = interestingAttribute.name().toLowerCase();

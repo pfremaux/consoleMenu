@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SelectElement implements MenufiedAction {
+public class ListSimilarLinks implements MenufiedAction {
 
     public static final String WEB_ELEMENT_NAME = "webElementName";
     public static final String WEB_ELEMENT = "webElement";

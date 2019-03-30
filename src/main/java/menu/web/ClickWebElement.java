@@ -14,7 +14,7 @@ public class ClickWebElement implements MenufiedAction {
 
     @Override
     public String title() {
-        return "Generate a click on a web element.";
+        return "Generate a click on a web element. (DEPRECATED ?)";
     }
 
     @Override
